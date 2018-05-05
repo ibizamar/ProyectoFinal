@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Apparel</title>
+<?php
+$con = mysqli_connect("localhost","root","","perfumeria");
+
+// Check connection
+if (mysqli_connect_errno()) {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
+
+session_start();
+
+?>
+
+	<title>Fleur</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="img/ribbon.png"/>
+	<link rel="icon" type="image/png" href="img/flor.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -34,6 +46,12 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+<link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet'>
+<!--===============================================================================================-->
+<!--===============================================================================================-->
+<link href='https://fonts.googleapis.com/css?family=Aclonica' rel='stylesheet'>
+<!--===============================================================================================-->
+
 </head>
 <body class="animsition">
 	
@@ -46,7 +64,7 @@
 					
 					<!-- Logo desktop -->		
 					<a href="#" class="logo">
-						<img src="img/logoapparel.png" alt="IMG-LOGO">
+						<img src="img/logofleur2.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
@@ -57,15 +75,7 @@
 							</li>
 
 							<li>
-								<a href="product.html">Tienda</a>
-							</li>
-
-							<li class="label1" data-label1="hot">
-								<a href="shoping-cart.html">Nuevo</a>
-							</li>
-
-							<li>
-								<a href="blog.html">Regístrate</a>
+								<a href="product.php">Tienda</a>
 							</li>
 
 							<li>
@@ -74,18 +84,24 @@
 
 							<li>
 								<a href="contact.html">Contacto</a>
-							</li>
+                            </li>
+                            
+                            <?php
+                            if(isset($_SESSION['username'])){
+                            echo "<li>";
+                            echo "<a href='#'>Bienvenido " .$_SESSION['username']. "</a>";
+                            echo "</li>";
+
+                            echo "<li>";
+                            echo "<a href='cerrar.php'>Cerrar Sesion</a>";
+                            echo "</li>";
+                            }
+                            ?>    
+
 						</ul>
 					</div>	
 
 					<!-- Icon header -->
-
-					<div class="flex-c-m h-full p-lr-19">							
-						<div class="flex-c-m h-full p-r-25 bor6">
-							<div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="2">
-								<i class="zmdi zmdi-account-o"></i>
-							</div>
-						</div>
 
 					<div class="wrap-icon-header flex-w flex-r-m h-full">							
 						<div class="flex-c-m h-full p-r-25 bor6">
@@ -95,30 +111,33 @@
 						</div>
 							
 						<div class="flex-c-m h-full p-lr-19">
-							<div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 js-show-sidebar">
-								<i class="zmdi zmdi-menu"></i>
+							<div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11">
+									<a href="formulario1.php"><i class="zmdi zmdi-account-o"></i></a>
 							</div>
 						</div>
 					</div>
-					</div>
 				</nav>
+				</div>
 			</div>	
-		</div>
 
 		<!-- Header Mobile -->
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="home-03.html"><img src="img/ribbon.png" alt="IMG-LOGO"></a>
+				<a href="home-03.html"><img src="img/logofleur2.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
-			<div class="wrap-icon-header flex-w flex-r-m h-full m-r-15">
+			
 				<div class="flex-c-m h-full p-r-5">
 					<div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="2">
 						<i class="zmdi zmdi-shopping-cart"></i>
 					</div>
 				</div>
+
+				<div class="flex-c-m h-full p-r-5">
+					<div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11">
+						<a href="formulario1.php"><i class="zmdi zmdi-account-o"></i></a>
 			</div>
 
 			<!-- Button show menu -->
@@ -128,29 +147,26 @@
 				</span>
 			</div>
 		</div>
-
+		
+		</div>
 
 		<!-- Menu Mobile -->
 		<div class="menu-mobile">
 			<ul class="main-menu-m">
 				<li>
-					<a href="home-03.html">Inicip</a>
-					<span class="arrow-main-menu-m">
-						<i class="fa fa-angle-right" aria-hidden="true"></i>
-					</span>
+					<a href="home-03.html">Inicio</a>
+				</li>
+				<li>
+					<a href="product.php">Tienda</a>
 				</li>
 
-				<li>
-					<a href="product.html">Tienda</a>
-				</li>
-
-				<li>
+				<!--<li>
 					<a href="shoping-cart.html" class="label1 rs1" data-label1="Trendy!">Nuevo</a>
 				</li>
 
 				<li>
 					<a href="blog.html">Regístrate</a>
-				</li>
+				</li>-->
 
 				<li>
 					<a href="about.html">Acerca de</a>
@@ -161,123 +177,13 @@
 				</li>
 			</ul>
 		</div>
-
-		<!-- Modal Search -->
-		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
-			<button class="flex-c-m btn-hide-modal-search trans-04">
-				<i class="zmdi zmdi-close"></i>
-			</button>
-
-			<form class="container-search-header">
-				<div class="wrap-search-header">
-					<input class="plh0" type="text" name="search" placeholder="Search...">
-
-					<button class="flex-c-m trans-04">
-						<i class="zmdi zmdi-search"></i>
-					</button>
-				</div>
-			</form>
-		</div>
 	</header>
 
-
-	<!-- Sidebar -->
-	<aside class="wrap-sidebar js-sidebar">
-		<div class="s-full js-hide-sidebar"></div>
-
-		<div class="sidebar flex-col-l p-t-22 p-b-25">
-			<div class="flex-r w-full p-b-30 p-r-27">
-				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-sidebar">
-					<i class="zmdi zmdi-close"></i>
-				</div>
-			</div>
-
-			<div class="sidebar-content flex-w w-full p-lr-65 js-pscroll">
-				<ul class="sidebar-link w-full">
-					<li class="p-b-13">
-						<a href="home-03.html" class="stext-102 cl2 hov-cl1 trans-04">
-							Inicio
-						</a>
-					</li>
-					<li class="p-b-13">
-						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-							Mi cuenta
-						</a>
-					</li>
-					<li class="p-b-13">
-						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-							Ayuda & FAQs
-						</a>
-					</li>
-				</ul>
-
-				<div class="sidebar-gallery w-full p-tb-30">
-					<span class="mtext-101 cl5">
-						@Apparel
-					</span>
-
-					<div class="flex-w flex-sb p-t-36 gallery-lb">
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="images/gallery-01.jpg" data-lightbox="gallery" 
-							style="background-image: url('images/gallery-01.jpg');"></a>
-						</div>
-
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="images/gallery-02.jpg" data-lightbox="gallery" 
-							style="background-image: url('images/gallery-02.jpg');"></a>
-						</div>
-
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="images/gallery-03.jpg" data-lightbox="gallery" 
-							style="background-image: url('images/gallery-03.jpg');"></a>
-						</div>
-
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="images/gallery-04.jpg" data-lightbox="gallery" 
-							style="background-image: url('images/gallery-04.jpg');"></a>
-						</div>
-
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="images/gallery-05.jpg" data-lightbox="gallery" 
-							style="background-image: url('images/gallery-05.jpg');"></a>
-						</div>
-
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="images/gallery-06.jpg" data-lightbox="gallery" 
-							style="background-image: url('images/gallery-06.jpg');"></a>
-						</div>
-
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="images/gallery-07.jpg" data-lightbox="gallery" 
-							style="background-image: url('images/gallery-07.jpg');"></a>
-						</div>
-
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="images/gallery-08.jpg" data-lightbox="gallery" 
-							style="background-image: url('images/gallery-08.jpg');"></a>
-						</div>
-
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="images/gallery-09.jpg" data-lightbox="gallery" 
-							style="background-image: url('images/gallery-09.jpg');"></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</aside>
+	
 
 
-	<!-- Cart -->
+
+	<!-- Cart 
 	<div class="wrap-header-cart js-panel-cart">
 		<div class="s-full js-hide-cart"></div>
 
@@ -360,7 +266,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>-->
 
 
 
@@ -368,23 +274,23 @@
 	<section class="section-slide">
 		<div class="wrap-slick1 rs2-slick1">
 			<div class="slick1">
-				<div class="item-slick1 bg-overlay1" style="background-image: url(images/slide-05.jpg);" data-thumb="images/thumb-01.jpg" data-caption="Women’s Wear">
+				<div class="item-slick1 bg-overlay1" style="background-image: url(img/panthere.jpg);">
 					<div class="container h-full">
 						<div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
 								<span class="ltext-202 txt-center cl0 respon2">
-									Colección Damas 2018
+									Cartier
 								</span>
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
 								<h2 class="ltext-104 txt-center cl0 p-t-22 p-b-40 respon1">
-									Nuevos Productos
+									Nueva Fragancia
 								</h2>
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+								<a href="product.php" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
 									Compra ahora
 								</a>
 							</div>
@@ -392,23 +298,23 @@
 					</div>
 				</div>
 
-				<div class="item-slick1 bg-overlay1" style="background-image: url(img/kids.jpg);" data-thumb="img/kids.jpg" data-caption="Kids Wear">
+				<div class="item-slick1 bg-overlay1" style="background-image: url(img/poisson.jpg);">
 					<div class="container h-full">
 						<div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
 								<span class="ltext-202 txt-center cl0 respon2">
-									Colección Niños
+									Poisson Girl Unexpected
 								</span>
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="lightSpeedIn" data-delay="800">
 								<h2 class="ltext-104 txt-center cl0 p-t-22 p-b-40 respon1">
-									Nuevos Productos
+									Dior
 								</h2>
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
-								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+								<a href="product.php" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
 									Compra Ahora
 								</a>
 							</div>
@@ -416,23 +322,23 @@
 					</div>
 				</div>
 
-				<div class="item-slick1 bg-overlay1" style="background-image: url(images/slide-07.jpg);" data-thumb="images/thumb-03.jpg" data-caption="Men’s Wear">
+				<div class="item-slick1 bg-overlay1" style="background-image: url(img/eros.jpg);">
 					<div class="container h-full">
 						<div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="rotateInDownLeft" data-delay="0">
 								<span class="ltext-202 txt-center cl0 respon2">
-									Colección Caballeros 2018
+									Eros
 								</span>
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="rotateInUpRight" data-delay="800">
 								<h2 class="ltext-104 txt-center cl0 p-t-22 p-b-40 respon1">
-									NUEVA TEMPORADA
+									Pour Homme
 								</h2>
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="rotateIn" data-delay="1600">
-								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+								<a href="product.php" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
 									Compra Ahora
 								</a>
 							</div>
@@ -440,138 +346,146 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="wrap-slick1-dots p-lr-10"></div>
 		</div>
 	</section>
 
+	<br>
+	<br>
+
+
+	
 
 	<!-- Banner -->
 	<div class="sec-banner bg0 p-t-95 p-b-55">
 		<div class="container">
+				<div class="p-b-10">
+						<h3 class="ltext-103 cl5">
+							Lo nuevo
+						</h3>
+					</div>
+
 			<div class="row">
 				<div class="col-md-6 p-b-30 m-lr-auto">
 					<!-- Block1 -->
 					<div class="block1 wrap-pic-w">
-						<img src="images/banner-04.jpg" alt="IMG-BANNER">
+						<img src="img/twilly.jpg" alt="IMG-BANNER">
 
-						<a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+						<div class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
 								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Damas
+									Twilly
 								</span>
 
 								<span class="block1-info stext-102 trans-04">
-									Nuevas Tendencias
+										d'Hermès
 								</span>
 							</div>
-
 							<div class="block1-txt-child2 p-b-4 trans-05">
 								<div class="block1-link stext-101 cl0 trans-09">
-									Compra Ahora
+									Disponible
 								</div>
 							</div>
-						</a>
+						</div>
 					</div>
 				</div>
 
 				<div class="col-md-6 p-b-30 m-lr-auto">
 					<!-- Block1 -->
 					<div class="block1 wrap-pic-w">
-						<img src="images/banner-05.jpg" alt="IMG-BANNER">
+						<img src="img/bloom.jpg" alt="IMG-BANNER">
 
-						<a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+						<div class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
 								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Caballeros
+									Bloom
 								</span>
 
 								<span class="block1-info stext-102 trans-04">
-									Nuevas Tendencias
+									Gucci
 								</span>
 							</div>
 
 							<div class="block1-txt-child2 p-b-4 trans-05">
 								<div class="block1-link stext-101 cl0 trans-09">
-									Compra Ahora
+									Próximamente
 								</div>
 							</div>
-						</a>
+						</div>
 					</div>
 				</div>
 
 				<div class="col-md-6 col-lg-4 p-b-30 m-lr-auto">
 					<!-- Block1 -->
 					<div class="block1 wrap-pic-w">
-						<img src="images/banner-07.jpg" alt="IMG-BANNER">
+						<img src="img/kiss.jpg" alt="IMG-BANNER">
 
-						<a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+						<div class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
 								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Relójes
+									Kiss
 								</span>
 
 								<span class="block1-info stext-102 trans-04">
-									Primavera 2018
+									Marc Jacobs
 								</span>
 							</div>
 
 							<div class="block1-txt-child2 p-b-4 trans-05">
 								<div class="block1-link stext-101 cl0 trans-09">
-									Compra ahora
+									Edición Especial - Próximamente
 								</div>
 							</div>
-						</a>
+						</div>
 					</div>
 				</div>
 
 				<div class="col-md-6 col-lg-4 p-b-30 m-lr-auto">
 					<!-- Block1 -->
 					<div class="block1 wrap-pic-w">
-						<img src="img/kid.png" alt="IMG-BANNER">
+						<img src="img/scandal.png" alt="IMG-BANNER">
 
-						<a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+						<div class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
 								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Niños
+									Scandal
 								</span>
 
 								<span class="block1-info stext-102 trans-04">
-									Primavera 2018
+									Jean Paul Gaultier
 								</span>
 							</div>
 
 							<div class="block1-txt-child2 p-b-4 trans-05">
 								<div class="block1-link stext-101 cl0 trans-09">
-									Compra Ahora
+									Próximamente
 								</div>
 							</div>
-						</a>
+						</div>
 					</div>
 				</div>
 
 				<div class="col-md-6 col-lg-4 p-b-30 m-lr-auto">
 					<!-- Block1 -->
 					<div class="block1 wrap-pic-w">
-						<img src="images/banner-09.jpg" alt="IMG-BANNER">
+						<img src="img/concrete.png" alt="IMG-BANNER">
 
-						<a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+						<div class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
 								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Accesorios
+									Concrete
 								</span>
 
 								<span class="block1-info stext-102 trans-04">
-									Primavera 2018
+									Comme des Garçons
 								</span>
 							</div>
 
 							<div class="block1-txt-child2 p-b-4 trans-05">
 								<div class="block1-link stext-101 cl0 trans-09">
-									Compra ahora
+									Agotado
 								</div>
 							</div>
-						</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -599,18 +513,6 @@
 								Caballeros
 							</a>
 						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Zapatos
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Relojes
-							</a>
-						</li>
 					</ul>
 				</div>
 
@@ -634,7 +536,7 @@
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
-						¿Preguntas? Visita nuestra tienda en 8th floor, 379 Hudson St, New York, NY 10018 o llámanos al (+1) 96 716 6879
+						¿Preguntas? <br> llámanos al (+1) 96 716 6879
 					</p>
 
 					<div class="p-t-27">
@@ -654,19 +556,20 @@
 
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
-						Novedades
+						Lo mejor en perfumería
 					</h4>
 
 					<form>
 						<div class="wrap-input1 w-full p-b-4">
-							<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">
-							<div class="focus-input1 trans-04"></div>
+						      <img src="img/logofleur2.png" alt="IMG-LOGO" width="70">
+							<!--<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">-->
+							<!--<div class="focus-input1 trans-04"></div0-->
 						</div>
 
 						<div class="p-t-18">
-							<button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+							<!--<button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
 								Suscríbete
-							</button>
+							</button>-->
 						</div>
 					</form>
 				</div>
@@ -697,7 +600,7 @@
 
 				<p class="stext-107 cl6 txt-center">
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This page is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by Mariela Ricardez
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
 				</p>
@@ -969,4 +872,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="js/main.js"></script>
 
 </body>
+
+
 </html>
