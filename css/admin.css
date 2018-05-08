@@ -1,0 +1,31 @@
+
+.jumbotron{
+    color: white;
+    font-family: 'Quattrocento Sans';
+    background-image: url("../img/fondojumbo.jpg") ;
+    
+}
+
+.container .jumbotron h1{
+    color: white;
+}
+
+p{
+    color:white;
+}
+
+.contenedor1{
+    position: absolute;
+    top:58%;
+    left :35%;
+    width: 60%;
+    height: 50%;
+}
+
+.contenedor2{
+    position: relative;
+    top:25px;
+    width: 30%;
+    height: 30%;
+}
+
