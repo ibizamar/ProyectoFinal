@@ -494,7 +494,10 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 .wrap-icon-header {
   flex-grow: 1;
+<<<<<<< HEAD
   color:  rgb(137, 30, 236);
+=======
+>>>>>>> origin/master
 }
 
 .wrap-icon-header a{
@@ -502,7 +505,11 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 .wrap-icon-headers a{
+<<<<<<< HEAD
   color: rgb(137, 30, 236);
+=======
+  color: rgb(0, 0, 0);
+>>>>>>> origin/master
 }
 
 
@@ -1933,13 +1940,20 @@ input.num-product::-webkit-inner-spin-button {
 [ Table Shopping Cart ]*/
 
 .wrap-table-shopping-cart {
+<<<<<<< HEAD
   overflow-x: hidden;
+=======
+  overflow: auto;
+>>>>>>> origin/master
   border-left: 1px solid #e6e6e6;
   border-right: 1px solid #e6e6e6;
 }
 
 .table-shopping-cart {
+<<<<<<< HEAD
   overflow-x: hidden;
+=======
+>>>>>>> origin/master
   border-collapse: collapse;
   width: 100%;
   min-width: 680px;
@@ -2153,7 +2167,11 @@ input.num-product::-webkit-inner-spin-button {
 ==================================================================*/
 .cl0 {color: #fff;}
 .cl1 {color: #717fe0;}
+<<<<<<< HEAD
 .cl2 {color: rgb(41, 39, 39);}
+=======
+.cl2 {color: #333;}
+>>>>>>> origin/master
 .cl3 {color: #666;}
 .cl4 {color: #999;}
 .cl5 {color: #222;}
@@ -2164,7 +2182,10 @@ input.num-product::-webkit-inner-spin-button {
 .cl10 {color: #1d1d1d;}
 .cl11 {color: #f9ba48;}
 .cl12 {color: #ccc;}
+<<<<<<< HEAD
 .cl13 {color: rgb(152, 78, 185);}
+=======
+>>>>>>> origin/master
 
 /*//////////////////////////////////////////////////////////////////
 [ S-Text 0 - 15 ]*/
@@ -2679,7 +2700,11 @@ input.num-product::-webkit-inner-spin-button {
    BACKGROUND BACKGROUND BACKGROUND BACKGROUND BACKGROUND BACKGROUND 
 ==================================================================*/
 .bg-none {background-color: transparent;}
+<<<<<<< HEAD
 .bg0 {background-color: rgb(255, 255, 255);}
+=======
+.bg0 {background-color: #fff;}
+>>>>>>> origin/master
 .bg1 {background-color: #dd398b;}
 .bg2 {background-color: #e6e6e6;}
 .bg3 {background-color: #222;}
@@ -3089,7 +3114,11 @@ input.num-product::-webkit-inner-spin-button {
 [ Hover ]*/
 
 .hov-cl0:hover {color: #fff;}
+<<<<<<< HEAD
 .hov-bg0:hover {background-color: rgb(144, 96, 233);}
+=======
+.hov-bg0:hover {background-color: #fff;}
+>>>>>>> origin/master
 .hov-cl1:hover {color: #8b49c9;}
 .hov-bg1:hover {background-color: #31b4e7;}
 
@@ -3117,6 +3146,7 @@ input.num-product::-webkit-inner-spin-button {
 
 /*---------------------------------------------*/
 .hov-btn1:hover {
+<<<<<<< HEAD
   border-color: rgb(105, 54, 223);
   background-color: rgb(140, 32, 228);
   color: rgb(255, 255, 255);
@@ -3124,6 +3154,15 @@ input.num-product::-webkit-inner-spin-button {
 
 .hov-btn1:hover i {
   color: rgb(255, 255, 255);
+=======
+  border-color: #222;
+  background-color: #222;
+  color: #fff;
+}
+
+.hov-btn1:hover i {
+  color: #fff;
+>>>>>>> origin/master
 }
 
 /*---------------------------------------------*/
@@ -3135,8 +3174,13 @@ input.num-product::-webkit-inner-spin-button {
 
 /*---------------------------------------------*/
 .hov-btn3:hover {
+<<<<<<< HEAD
   border-color: #9b71e0;
   background-color: #8258c5;
+=======
+  border-color: #717fe0;
+  background-color: #717fe0;
+>>>>>>> origin/master
   color: #fff;
 }
 
