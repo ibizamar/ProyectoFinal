@@ -37,14 +37,17 @@ error_reporting(0);
 
 
 <div class="container">
+</br>
+</br>
+</br>
         <div class="jumbotron">
          <h1>Bienvenido Administrador</h1>
           <p>Realice modificaciones a la base de datos</p>
         </div>
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Opciones de Administrador: </a>
+      <a class="navbar-brand" href="#">Administrador: </a>
     </div>
     <ul class="nav navbar-nav">
       <li><a href="#">        </a></li> 
@@ -54,6 +57,8 @@ error_reporting(0);
       <li><a href="admin2.php">Modificar Productos Existentes</a></li>
       <li class="active"><a href="#"><span class="glyphicon glyphicon-wrench"></span></a></li> 
       <li><a href="admin3.php">Eliminar Productos</a></li>
+      <li class="active"><a href="#"><span class="glyphicon glyphicon-wrench"></span></a></li> 
+      <li><a href="admin4.php">Historial</a></li>
       <li class="active"><a href="#"><span class="glyphicon glyphicon-wrench"></span></a></li> 
       <li><a href="inicio.php">Salir</a></li>
     </ul>
