@@ -178,6 +178,30 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   -moz-transition: all 0.4s;
 }
 
+
+.botoncillo{
+  background-color: rgb(127, 78, 192);
+  color: white;
+}
+
+.botoncillo:hover{
+  background-color: rgb(129, 111, 151);
+  color: white;
+}
+
+.botonete{
+  position: absolute;
+  right: 160px;
+  width: 150px;
+  height: 50px;
+}
+
+.botonete1{
+  position: absolute;
+  right: 160px;
+  width: 150px;
+  height: 50px;
+}
 .symbol-btn-back-to-top {
   font-size: 25px;
   color: white;
@@ -225,6 +249,30 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   height: 124px;
 }
 
+.well{
+  background-image: url("../img/fondo3.jpg")  !important;
+  color: rgb(255, 255, 255) !important;
+  background-repeat: repeat-x;
+  background-position: 50% 50%;
+}
+
+.well
+{
+  align-items: center;
+  text-align: center;
+  font-family: "Raleway";
+  font-size: 35px;
+  font-weight: bold;
+  color: rgb(255, 255, 255) !important;
+}
+
+.well .well1{
+  color: cornflowerblue ;
+}
+
+.well1{
+  color: cornflowerblue ;
+}
 
 /*==================================================================
 [ Top bar ]*/
@@ -494,22 +542,15 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 .wrap-icon-header {
   flex-grow: 1;
-<<<<<<< HEAD
   color:  rgb(137, 30, 236);
-=======
->>>>>>> origin/master
 }
 
 .wrap-icon-header a{
-  color: rgb(255, 255, 255);
+  color: rgb(145, 33, 236);
 }
 
 .wrap-icon-headers a{
-<<<<<<< HEAD
   color: rgb(137, 30, 236);
-=======
-  color: rgb(0, 0, 0);
->>>>>>> origin/master
 }
 
 
@@ -520,25 +561,24 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   cursor: pointer;
 }
 
+.wrap-header-mobile{
+  color:#8537ec;
+}
+
+.wrap-header-mobile a{
+  color:#8537ec;
+}
+
+.icon-header-item > li:hover > a {
+  color:#8537ec;
+  text-decoration: none;
+}
+
+.icon-header-item > a{
+  color:#8537ec;
+}
 
 /*---------------------------------------------*/
-.icon-header-noti::after {
-  content: attr(data-notify);
-  font-family: Poppins-Regular;
-  font-size: 12px;
-  color: #fff;
-  line-height: 15px;
-  text-align: center;
-
-  display: block;
-  position: absolute;
-  top: -7px;
-  right: 0;
-  min-width: 15px;
-  height: 15px;
-  padding: 0 3px;
-  background-color: #8537ec;
-}
 
 /*---------------------------------------------*/
 .wrap-header-mobile .wrap-icon-header {
@@ -800,13 +840,10 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   cursor: pointer;
 }
 
-/*.arrow-main-menu-m i {
-  transform-origin: center;
-  -webkit-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  transition: all 0.3s;
-}*/
+.wrap-header-mobile > a{
+  color: rgb(168, 64, 216);
+}
+
 
 .turn-arrow-main-menu-m i {
   -webkit-transform: rotate(90deg);
@@ -2174,7 +2211,7 @@ input.num-product::-webkit-inner-spin-button {
 >>>>>>> origin/master
 .cl3 {color: #666;}
 .cl4 {color: #999;}
-.cl5 {color: #222;}
+.cl5 {color: rgb(67, 13, 92);}
 .cl6 {color: #888;}
 .cl7 {color: #b2b2b2;}
 .cl8 {color: #555;}
@@ -2375,6 +2412,22 @@ input.num-product::-webkit-inner-spin-button {
   line-height: 1.222222;
 }
 
+.mtext-140 {
+  font-family: Poppins-Regular;
+  font-size: 18px;
+  line-height: 1.222222;
+  padding-left: 23%;
+  color: rgb(74, 29, 110);
+}
+
+.mtext-141 {
+  font-family: Poppins-Regular;
+  font-size: 24px;
+  line-height: 1.222222;
+  padding-left: 23%;
+  color: rgb(74, 29, 110);
+}
+
 .mtext-111 {
   font-family: Poppins-Bold;
   font-size: 25px;
@@ -2454,6 +2507,20 @@ input.num-product::-webkit-inner-spin-button {
   font-size: 36px;
   line-height: 1.2;
 }
+
+.ltext-160 {
+  font-family: 'Suravaram';
+  font-size: 36px;
+  line-height: 1.2;
+}
+
+.ltext-161 {
+  font-family: 'Suravaram';
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+
 
 
 /*---------------------------------------------*/
@@ -2700,11 +2767,7 @@ input.num-product::-webkit-inner-spin-button {
    BACKGROUND BACKGROUND BACKGROUND BACKGROUND BACKGROUND BACKGROUND 
 ==================================================================*/
 .bg-none {background-color: transparent;}
-<<<<<<< HEAD
 .bg0 {background-color: rgb(255, 255, 255);}
-=======
-.bg0 {background-color: #fff;}
->>>>>>> origin/master
 .bg1 {background-color: #dd398b;}
 .bg2 {background-color: #e6e6e6;}
 .bg3 {background-color: #222;}
@@ -3114,13 +3177,9 @@ input.num-product::-webkit-inner-spin-button {
 [ Hover ]*/
 
 .hov-cl0:hover {color: #fff;}
-<<<<<<< HEAD
 .hov-bg0:hover {background-color: rgb(144, 96, 233);}
-=======
-.hov-bg0:hover {background-color: #fff;}
->>>>>>> origin/master
 .hov-cl1:hover {color: #8b49c9;}
-.hov-bg1:hover {background-color: #31b4e7;}
+.hov-bg1:hover {background-color: #d895be;}
 
 /*---------------------------------------------*/
 .hov-img0 {
@@ -3146,7 +3205,6 @@ input.num-product::-webkit-inner-spin-button {
 
 /*---------------------------------------------*/
 .hov-btn1:hover {
-<<<<<<< HEAD
   border-color: rgb(105, 54, 223);
   background-color: rgb(140, 32, 228);
   color: rgb(255, 255, 255);
@@ -3154,33 +3212,19 @@ input.num-product::-webkit-inner-spin-button {
 
 .hov-btn1:hover i {
   color: rgb(255, 255, 255);
-=======
-  border-color: #222;
-  background-color: #222;
-  color: #fff;
-}
-
-.hov-btn1:hover i {
-  color: #fff;
->>>>>>> origin/master
 }
 
 /*---------------------------------------------*/
 .hov-btn2:hover {
   border-color: #fff;
-  background-color: #fff;
-  color: #717fe0;
+  background-color: rgb(221, 123, 169);
+  color: #fdfdfd;
 }
 
 /*---------------------------------------------*/
 .hov-btn3:hover {
-<<<<<<< HEAD
   border-color: #9b71e0;
   background-color: #8258c5;
-=======
-  border-color: #717fe0;
-  background-color: #717fe0;
->>>>>>> origin/master
   color: #fff;
 }
 

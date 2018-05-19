@@ -44,28 +44,35 @@ error_reporting(0);
          <h1>Bienvenido Administrador</h1>
           <p>Realice modificaciones a la base de datos</p>
         </div>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Administrador: </a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li><a href="#">        </a></li> 
-      <li class="active"><a href="#"><span class="glyphicon glyphicon-wrench"></span></a></li> 
-      <li><a href="admin1.php">Agregar Productos</a></li>
-      <li class="active"><a href="#"><span class="glyphicon glyphicon-wrench"></span></a></li> 
-      <li><a href="admin2.php">Modificar Productos Existentes</a></li>
-      <li class="active"><a href="#"><span class="glyphicon glyphicon-wrench"></span></a></li> 
-      <li><a href="admin3.php">Eliminar Productos</a></li>
-      <li class="active"><a href="#"><span class="glyphicon glyphicon-wrench"></span></a></li> 
-      <li><a href="admin4.php">Historial</a></li>
-      <li class="active"><a href="#"><span class="glyphicon glyphicon-wrench"></span></a></li> 
-      <li><a href="inicio.php">Salir</a></li>
-    </ul>
-  </div>
+
+
+<nav class="navbar navbar-inverse">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="#" class="navbar-brand">Administrador</a>
+        </div>
+        <!-- Collection of nav links and other content for toggling -->
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+            <li><a href="#"><span class="glyphicon glyphicon-wrench"></span></a></li> 
+            <li><a href="admin1.php">Agregar Productos</a></li>
+            <li><a href="admin2.php">Modificar Productos Existentes</a></li>
+            <li><a href="admin3.php">Eliminar Productos</a></li>
+            <li><a href="admin4.php">Historial</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            <li><a href="inicio.php">Salir</a></li>
+            </ul>
+        </div>
 </nav>
 
-<div class="container1">
+<div class="container">
 <h4>Modifique Productos Existentes</h4>
 <form role="form" action="admin2.php" method="GET">
 <div class="form-group">
@@ -87,7 +94,7 @@ echo "<option value='$valores[idproducto]'>$valores[idproducto] - $valores[pnomb
 </br>
 
 
-<div class="container1">
+
 <?php
      $producto=$_GET['producto'];
      $precio=$_POST['precio'];
@@ -99,7 +106,8 @@ echo "<option value='$valores[idproducto]'>$valores[idproducto] - $valores[pnomb
        
      while ($row = mysqli_fetch_array($query)) {
         echo "<h3> Producto a Modificar: </h3>";
-        echo "<table class='table table-hover table-striped'>
+        echo "<div class='table-responsive'>";
+        echo "<table class='table table-hover table-striped table-condensed'>
         <tr>
         <th>Producto</th>
         <th>Nombre</th>
@@ -122,6 +130,7 @@ echo "<option value='$valores[idproducto]'>$valores[idproducto] - $valores[pnomb
         echo "</tr>";
    
      echo "</table>";
+     echo "</div>";
 
 
      echo '<form action="admin2.php?id=' . $producto . '" method="post">
@@ -155,6 +164,7 @@ echo "<option value='$valores[idproducto]'>$valores[idproducto] - $valores[pnomb
     }
    ?>
 
+</div>
 </div>
 </div>
 </html>

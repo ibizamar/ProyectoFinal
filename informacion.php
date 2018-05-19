@@ -10,16 +10,14 @@ if (mysqli_connect_errno()) {
 }
 
 session_start();
-error_reporting(0);
-
-
 
 ?>
-	<title>Shoping Cart</title>
+
+	<title>Fleur</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-    <link rel="icon" type="image/png" href="img/flor.png"/>
+	<link rel="icon" type="image/png" href="img/flor.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -36,30 +34,32 @@ error_reporting(0);
 	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/MagnificPopup/magnific-popup.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/info.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet'>
+<!--===============================================================================================-->
+<!--===============================================================================================-->
+<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
 <!--===============================================================================================-->
 
 </head>
 <body class="animsition">
-	
+
 <!-- Header -->
 <header class="header-v4">
 <!-- Header desktop -->
 <div class="container-menu-desktop">
-    <!-- Topbar -->
-    <div class="top-bar">
-        <div class="content-topbar flex-sb-m h-full container">
-            <div class="left-top-bar">
-                Envío gratis a partir de $3000 MX
-            </div>
-        </div>
-    </div>
 
     <div class="wrap-menu-desktop how-shadow1">
         <nav class="limiter-menu-desktop container">
@@ -146,14 +146,6 @@ error_reporting(0);
 
 <!-- Menu Mobile -->
 <div class="menu-mobile">
-    <ul class="topbar-mobile">
-        <li>
-            <div class="left-top-bar">
-                Envío gratis a partir de los $3000 MX
-            </div>
-        </li>
-    </ul>
-
     <ul class="main-menu-m">
         <li>
             <a href="inicio.php">Inicio</a>
@@ -187,207 +179,64 @@ error_reporting(0);
 </header>
 
 
-	<!-- breadcrumb -->
-	<div class="container">
-		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
-				Inicio
-				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a>
 
-			<span class="stext-109 cl4">
-				Carrito
-            </span>
-        </div>
-        <?php
-            if(!isset($_SESSION['username'])){
-                echo "<div class='alert alert-danger fade in'>";
-                echo "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
-                echo "<strong>Inicie Sesion Para Comprar</strong>";
-                echo "</div>";}
-         ?>
+	<div class="col-sm-12">
+    	<div class="jumbotron jumbotron1">
+    	Información de usuario
+		</div>
+	<div>
+    <?php
+     $idusuario = $_SESSION["idusuario"];
+     $query="SELECT unombre, mail, tarjeta, fecha, direccion FROM usuarios WHERE idusuario ='$idusuario'";
+     $resultado = mysqli_query($con,$query);
+     $data = mysqli_fetch_array($resultado);
+     
+    ?> 
+   
+
+	<div class="jumbotron jumbotron2">
+	<div class="container">
+    <h4>Nombre:<h4>
+        <h5><?php echo $data['unombre']; ?></h5>
+        <br>
+        <br>
+        <h4>Correo Electrónico:<h4>
+        <h5><?php echo $data['mail']; ?></h5>
+        <br>
+        <br>
+        <h4>Fecha de Nacimiento:<h4>
+        <h5><?php echo $data['fecha']; ?></h5>
+        <br>
+        <br>
+        <h4>Número de Tarjeta:<h4>
+        <h5><?php echo $data['tarjeta']; ?></h5>
+        <br>
+        <br>
+        <h4>Dirección:<h4>
+        <h5><?php echo $data['direccion']; ?></h5>
+        <br>
+        <br>
 	</div>
-		
-
-	<!-- Shoping Cart -->
-	<div class="container">
-	<form class='form' action='carrito.php' method='post'>
-		
-			<?php
-                if(isset($_SESSION['username'])){
-				$idproducto = $_GET['id'];
-				$idusuario = $_SESSION["idusuario"];
-				
-				if($idproducto!=null){
-				$query1="INSERT INTO carrito(idproducto,idusuario,cantidad) VALUES ($idproducto,$idusuario,1);";
-				$resultado1=mysqli_query($con,$query1);
-				}
-
-				
-                $query="SELECT p.idproducto, pnombre, precio, c.cantidad, foto from producto p, carrito c where c.idusuario=$idusuario and p.idproducto=c.idproducto;";
-				$resultado=mysqli_query($con,$query);
-
-				$query2="SELECT * from carrito;";
-				$resultado2=mysqli_query($con,$query);
-				$numfilas=mysqli_num_rows($resultado2);
-
-				if($numfilas==0){
-					echo "<div class='alert alert-danger fade in'>";
-					echo "<a href='#' class='close' data-dismiss='alert'></a>";
-					echo "<strong>Carrito Vacío</strong>";
-					echo "</div>";
-				}
-				else{
-                //echo "<div class='table-responsive'>";
-                echo "<div class='col-lg-10 col-xl-7 m-lr-auto m-b-50'>";
-                echo "<div class='m-l-25 m-r--38 m-lr-0-x'>";
-				echo "<div class='wrap-table-shopping-cart'>";
-
-				echo "<table class='table table-hover table-responsive'>";
-                echo "<tr class='table_head'>";
-				echo "<th class='column-1'>Producto</th>";
-				echo "<th class='column-1'>Nombre</th>";
-				echo "<th class='column-2'>Precio</th>";
-                echo "<th class='column-4'>Cantidad</th>";
-				echo "<th class='column-5'>Total</th>";
-				echo "<th class='column-3'></th>";
-				echo "</tr>";
-	
-				
-					$cont=0;
-					$cont2=0;
-					$cantidad=0;
-					$total=0;
-
-					while($row = mysqli_fetch_array($resultado)){
-				      
-					  echo "<tr>";
-					  echo "<td>";
-					  echo "<img src='img/".$row['foto']."' alt='IMG' width='100px'>";
-					  echo "</td>";
-					  echo "<td>" . $row['pnombre'] . "</td>";
-					  echo "<td>" . $row['precio'] . "</td>";
-					  echo "<td>";
-					  echo "<input type='hidden' name='p[".$cont++."]' value='" .$row['idproducto']. "'>";
-					  echo"<input type='text' class='form-control' size='4' name='cantidad[".$cont2++."]' value='" .$row['cantidad']. "'>";
-					  echo "</td>";
-					  echo "<td> $" .$row['precio']. "MX</td>";
-					  echo "</tr>";
-					  
-					  $cantidad+=$row['cantidad'];
-					  $total+=($row['cantidad']*$row['precio']);
-					  
-
-					}  
-					echo "</table>";
-
-					$count1 = count($_POST['cantidad']);
-					$idusuario=$_SESSION["idusuario"];
-					
-					
-					for($j=0; $j < $count1; $j++)
- 					{
-					$idprod = ($_POST['p'])[$j];
-					$ncantidad = ($_POST['cantidad'])[$j];
-				
-					$query2 = mysqli_query($con,"UPDATE carrito set cantidad='$ncantidad' where idproducto='$idprod' and idusuario='$idusuario';");
-					$query4 = mysqli_query($con,"SELECT cantidad from producto where idproducto='$idprod';");
-					$row = mysqli_fetch_array($query4);
-					header("Location: carrito.php");
-
-					if($ncantidad==0){
-						$query3 = mysqli_query($con,"DELETE from carrito  where idproducto='$idprod' and idusuario='$idusuario';");
-					}
-
-					if($ncantidad>$row['cantidad']){
-						echo "<div class='alert alert-danger fade in'>";
-						 echo "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
-						 echo "<strong>";
-						 echo"Excedió la cantidad disponible en stock";
-						 echo"</strong>";
-						 echo "</div>";
-					}
-					else {
-						$nvacantidad=$row['cantidad']-$ncantidad;
-						$query5 = mysqli_query($con,"UPDATE producto set cantidad='$nvacantidad' where idproducto='$idprod';");
-					}
-
-
-				
+	</div>
 
 
 
-					}
-					
-					
-					
-			    echo "<td><button type='submit' class='btn botoncillo btn-block'>Actualizar</button></td>" ;	
-                echo "</div>";
-                
-                
-				}
+       
 
 
-			}
-            ?>
-		
-	</form>
-						<?php
-						if((isset($_SESSION['username'])) && $numfilas!=0){
-						echo "<div class='flex-w flex-sb-m'>";
-						echo "</div>";
-						echo "</div>";
-						echo "</div>";
 
-						echo "<div class='col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50'>";
-						echo "<div class='bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm'>";
-						echo "<h4 class='mtext-109 cl10 p-b-30'>";
-						echo "Resúmen de la Cuenta";
-						echo "</h4>";
-						echo "<span class='mtext-101 cl10'>";
-						echo "Cantidad de Artículos:";
-						echo "&nbsp &nbsp &nbsp";
-						echo $cantidad;
-						echo "</span>";
 
-						echo "<div class='flex-w flex-t bor12 p-b-13'></div>";
-						echo "<div class='flex-w flex-t p-t-27 p-b-33'>";
-						echo "<div class='size-208'>";
-						echo "<span class='mtext-101 cl10'>";
-						echo "Total:";
-						echo "</span>";
-						echo "</div>";
-						echo "<div class='size-209 p-t-1'>";
-						echo "<span class='mtext-110 cl10'>";
-						echo "$";
-						echo $total;
-						echo " MX";
-						echo "</span>";
-						echo "</div>";
-						echo "</div>";
-						echo "</div>";
-						?>
-	
-						<div class="botonete">
-						<form action="confirmacion.php">
-						<button class='btn botoncillo'>Confirmar Compra</button>
-						</form>
-						<div>
-						<?php
-						}
-						?>
-						
 
-		</div>
-	    </div>
-		</div>
-		</div>
-		</div>
-		
-		
 
-	<!-- Footer -->
-	<footer class="bg3 p-t-75 p-b-32">
+
+
+
+
+
+
+
+<!-- Footer -->
+<footer class="bg3 p-t-75 p-b-32">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 col-lg-3 p-b-50">
@@ -430,7 +279,7 @@ error_reporting(0);
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
-                    ¿Preguntas? <br> llámanos al (+1) 96 716 6879
+						¿Preguntas? <br> llámanos al (+1) 96 716 6879
 					</p>
 
 					<div class="p-t-27">
@@ -450,19 +299,20 @@ error_reporting(0);
 
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
-						Newsletter
+						Lo mejor en perfumería
 					</h4>
 
 					<form>
 						<div class="wrap-input1 w-full p-b-4">
-							<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">
-							<div class="focus-input1 trans-04"></div>
+						      <img src="img/logofleur2.png" alt="IMG-LOGO" width="70">
+							<!--<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">-->
+							<!--<div class="focus-input1 trans-04"></div0-->
 						</div>
 
 						<div class="p-t-18">
-							<button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+							<!--<button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
 								Suscríbete
-							</button>
+							</button>-->
 						</div>
 					</form>
 				</div>
@@ -493,38 +343,19 @@ error_reporting(0);
 
 				<p class="stext-107 cl6 txt-center">
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script>All rights reserved | This page is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by Mariela Ricardez
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This page is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by Mariela Ricardez
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
 				</p>
 			</div>
 		</div>
-	</footer>
+</footer>
 
 
-	<!-- Back to top -->
-	<div class="btn-back-to-top" id="myBtn">
-		<span class="symbol-btn-back-to-top">
-			<i class="zmdi zmdi-chevron-up"></i>
-		</span>
-	</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
-
-	<!-- Back to top -->
-	<div class="btn-back-to-top" id="myBtn">
-		<span class="symbol-btn-back-to-top">
-			<i class="zmdi zmdi-chevron-up"></i>
-		</span>
-	</div>
 
 <!--===============================================================================================-->	
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
@@ -541,7 +372,69 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script>All ri
 		})
 	</script>
 <!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/slick/slick.min.js"></script>
+	<script src="js/slick-custom.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/parallax100/parallax100.js"></script>
+	<script>
+        $('.parallax100').parallax100();
+	</script>
+<!--===============================================================================================-->
 	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+	<script>
+		$('.gallery-lb').each(function() { // the containers for all your galleries
+			$(this).magnificPopup({
+		        delegate: 'a', // the selector for gallery item
+		        type: 'image',
+		        gallery: {
+		        	enabled:true
+		        },
+		        mainClass: 'mfp-fade'
+		    });
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="vendor/isotope/isotope.pkgd.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/sweetalert/sweetalert.min.js"></script>
+	<script>
+		$('.js-addwish-b2').on('click', function(e){
+			e.preventDefault();
+		});
+
+		$('.js-addwish-b2').each(function(){
+			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+
+				$(this).addClass('js-addedwish-b2');
+				$(this).off('click');
+			});
+		});
+
+		$('.js-addwish-detail').each(function(){
+			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+
+				$(this).addClass('js-addedwish-detail');
+				$(this).off('click');
+			});
+		});
+
+		/*---------------------------------------------*/
+
+		$('.js-addcart-detail').each(function(){
+			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to cart !", "success");
+			});
+		});
+	</script>
 <!--===============================================================================================-->
 	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
@@ -561,6 +454,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script>All ri
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
-
 </body>
 </html>
+
+
+
+
+

@@ -1,0 +1,22 @@
+.jumbotron1{
+    color: rgb(255, 255, 255) !important;
+    text-align: left;
+    font-family: "Raleway";
+    font-size: 50px;
+    font-weight: bold;
+    background-image: url("../img/fondito1.jpg")  !important;
+    background-repeat: repeat-x;
+    background-position: 50% 50%;
+}
+
+.jumbotron2{
+    color: rgb(255, 255, 255) !important;
+    text-align: left;
+    font-family: "Raleway";
+    font-weight: bold;
+    background-image: url("../img/fondito2.jpg")  !important;
+    background-repeat: repeat-y;
+    background-position: 50% 50%;
+
+}
+

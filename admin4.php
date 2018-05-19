@@ -40,30 +40,38 @@ error_reporting(0);
 </br>
 </br>
 </br>
-        <div class="jumbotron">
-         <h1>Bienvenido Administrador</h1>
-          <p>Realice modificaciones a la base de datos</p>
-        </div>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Administrador: </a>
+    <div class="jumbotron">
+    <h1>Bienvenido Administrador</h1>
+    <p>Realice modificaciones a la base de datos</p>
     </div>
-            <ul class="nav navbar-nav">
-            <li><a href="#">        </a></li> 
-            <li class="active"><a href="#"><span class="glyphicon glyphicon-wrench"></span></a></li> 
-            <li><a href="admin1.php">Agregar Productos</a></li>
-            <li class="active"><a href="#"><span class="glyphicon glyphicon-wrench"></span></a></li> 
-            <li><a href="admin2.php">Modificar Productos Existentes</a></li>
-            <li class="active"><a href="#"><span class="glyphicon glyphicon-wrench"></span></a></li> 
-            <li><a href="admin3.php">Eliminar Productos</a></li>
-            <li class="active"><a href="#"><span class="glyphicon glyphicon-wrench"></span></a></li> 
-            <li><a href="admin4.php">Historial</a></li>
-            <li class="active"><a href="#"><span class="glyphicon glyphicon-wrench"></span></a></li> 
-            <li><a href="inicio.php">Salir</a></li>
-            </ul>
+
+
+<nav class="navbar navbar-inverse">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a href="#" class="navbar-brand">Administrador</a>
         </div>
-        </nav>
+        <!-- Collection of nav links and other content for toggling -->
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+        <li><a href="#"><span class="glyphicon glyphicon-wrench"></span></a></li> 
+        <li><a href="admin1.php">Agregar Productos</a></li>
+        <li><a href="admin2.php">Modificar Productos Existentes</a></li>
+        <li><a href="admin3.php">Eliminar Productos</a></li>
+        <li><a href="admin4.php">Historial</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+        <li><a href="inicio.php">Salir</a></li>
+        </ul>
+        </div>
+</nav>
+
 
         
         <?php
@@ -73,14 +81,12 @@ error_reporting(0);
                 
 
                 echo "<span class='mtext-141 cl10'>";
-                echo "Artículos Comprados:";
+                echo "<center>Artículos Comprados:</center>";
                 echo "</span>";
                 echo "</br>";
                 echo "</br>";
-                echo "<div class='row'>";
-                echo "<div class='col-lg-10 col-xl-7 m-lr-auto m-b-50'>";
-                echo "<div class='m-l-25 m-r--38 m-lr-0-x'>";
-				echo "<div class='wrap-table-shopping-cart'>";
+                echo "<div class='table-responsive'>";
+
                 
                 echo "<center>";
 				echo "<table class='table table-hover'>";
@@ -117,11 +123,12 @@ error_reporting(0);
 
 					}  
                     echo "</table>";
+                    echo "</div>";
+                    echo "</center> ";
 
 
                 ?>
-
-                </center> 
+                
     </div>
                 
  
